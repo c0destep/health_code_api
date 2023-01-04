@@ -1,0 +1,79 @@
+{
+    "name": "aplus/app",
+    "description": "Aplus Framework App Project",
+    "license": "MIT",
+    "type": "project",
+    "keywords": [
+        "app",
+        "application",
+        "libraries",
+        "mvc",
+        "database",
+        "routing",
+        "http",
+        "config",
+        "session",
+        "skeleton",
+        "project"
+    ],
+    "homepage": "https://aplus-framework.com/packages/app",
+    "support": {
+        "email": "support@aplus-framework.com",
+        "issues": "https://gitlab.com/aplus-framework/projects/app/issues",
+        "forum": "https://aplus-framework.com/forum",
+        "source": "https://gitlab.com/aplus-framework/projects/app",
+        "docs": "https://docs.aplus-framework.com/guides/projects/app/"
+    },
+    "funding": [
+        {
+            "type": "Aplus Sponsor",
+            "url": "https://aplus-framework.com/sponsor"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "aplus/framework": "^23"
+    },
+    "require-dev": {
+        "ext-xdebug": "*",
+        "aplus/coding-standard": "^1",
+        "aplus/testing": "^1",
+        "captainhook/captainhook": "^5",
+        "captainhook/plugin-composer": "^5",
+        "ergebnis/composer-normalize": "^2",
+        "jetbrains/phpstorm-attributes": "^1",
+        "natanfelles/php-server": "^2",
+        "phpmd/phpmd": "^2",
+        "phpstan/phpstan": "^1",
+        "ramsey/conventional-commits": "^1"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "classmap": [
+            "App.php"
+        ],
+        "files": [
+            "boot/init.php",
+            "boot/constants.php",
+            "boot/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true,
+            "captainhook/plugin-composer": true
+        },
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    }
+}
