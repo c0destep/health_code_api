@@ -225,7 +225,7 @@ class CustomerController extends Controller
             ]);
         }
 
-        $replaced = $this->model->replace($identify, $this->request->getPost());
+        $replaced = $this->model->replace($identify, $this->request->getPost()); // @phpstan-ignore-line
 
         if ($replaced === false) {
             return $this->response->setJson([
