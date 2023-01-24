@@ -10,6 +10,7 @@
 /**
  * @package app
  */
+
 use Framework\Helpers\ArraySimple;
 use Framework\HTTP\Response;
 use Framework\MVC\App;
@@ -25,7 +26,7 @@ use JetBrains\PhpStorm\Pure;
  *
  * @return array<int,string> A list of all loaded files
  */
-function helpers(array | string $helper) : array
+function helpers(array|string $helper) : array
 {
     if (is_array($helper)) {
         $files = [];
@@ -79,7 +80,7 @@ function view(string $path, array $variables = [], string $instance = 'default')
  */
 function current_url() : string
 {
-    return App::request()->getUrl()->getAsString();
+    return App::request()->getUrl()->toString();
 }
 
 /**
@@ -147,12 +148,12 @@ function session() : Session
  * @param string|null $key Set null to return all data
  * @param bool $escape
  *
- * @see Framework\HTTP\Request::getRedirectData()
- * @see Framework\HTTP\Response::redirect()
- * @see redirect()
- *
  * @return mixed The old value. If $escape is true and the value is not
  * stringable, an empty string will return
+ *
+ * @see Framework\HTTP\Response::redirect()
+ * @see redirect()
+ * @see Framework\HTTP\Request::getRedirectData()
  */
 function old(?string $key, bool $escape = true) : mixed
 {
@@ -185,6 +186,8 @@ function csrf_input(string $instance = 'default') : string
  *
  * @param array<string,mixed> $variables
  *
+ * @throws JsonException
+ *
  * @return Framework\HTTP\Response
  */
 function not_found(array $variables = []) : Response
@@ -216,13 +219,13 @@ function not_found(array $variables = []) : Response
  * @param int|null $code HTTP Redirect status code. Leave null to determine
  * based on the current HTTP method.
  *
- * @see http://en.wikipedia.org/wiki/Post/Redirect/Get
- * @see Framework\HTTP\Request::getRedirectData()
- * @see old()
- *
  * @throws InvalidArgumentException for invalid Redirection code
  *
  * @return Framework\HTTP\Response
+ *
+ * @see old()
+ * @see http://en.wikipedia.org/wiki/Post/Redirect/Get
+ * @see Framework\HTTP\Request::getRedirectData()
  */
 function redirect(string $location, array $data = [], int $code = null) : Response
 {

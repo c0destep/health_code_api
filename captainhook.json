@@ -11,11 +11,6 @@
         "enabled": true,
         "actions": [
             {
-                "action": "\\CaptainHook\\App\\Hook\\PHP\\Action\\Linting",
-                "options": [],
-                "conditions": []
-            },
-            {
                 "action": "composer normalize --dry-run --indent-size=4 --indent-style=space",
                 "options": [],
                 "conditions": []

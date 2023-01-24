@@ -18,9 +18,9 @@ return [
     'default' => [
         'config' => [
             'username' => 'root',
-            'password' => 'password',
-            'schema' => 'framework-tests',
-            'host' => 'localhost',
+            'password' => '',
+            'schema' => 'health_code_api',
+            'host' => '127.0.0.1',
         ],
         'logger_instance' => 'default',
     ],
