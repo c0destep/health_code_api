@@ -58,6 +58,8 @@ jobs:
           vendor/bin/phpstan analyse --xdebug -vvv
 
       - name: PHPUnit
+        env:
+          DB_HOST: 127.0.0.1
         run: vendor/bin/phpunit --verbose
 
       - name: Upload coverage results to Coveralls
@@ -104,4 +106,6 @@ jobs:
           composer update
 
       - name: PHPUnit
+        env:
+          DB_HOST: 127.0.0.1
         run: vendor/bin/phpunit --verbose
