@@ -18,9 +18,9 @@ return [
     'default' => [
         'config' => [
             'username' => 'root',
-            'password' => '',
+            'password' => 'password',
             'schema' => 'health_code_api',
-            'host' => '127.0.0.1',
+            'host' => 'mariadb',
         ],
         'logger_instance' => 'default',
     ],
