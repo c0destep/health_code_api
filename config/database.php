@@ -18,10 +18,19 @@ return [
     'default' => [
         'config' => [
             'username' => 'root',
-            'password' => 'password',
+            'password' => '',
             'schema' => 'health_code_api',
-            'host' => 'mariadb',
+            'host' => '127.0.0.1',
         ],
         'logger_instance' => 'default',
+    ],
+    'tests' => [
+        'config' => [
+            'host' => getenv('DB_HOST'),
+            'port' => getenv('DB_PORT'),
+            'username' => getenv('DB_USERNAME'),
+            'password' => getenv('DB_PASSWORD'),
+            'schema' => getenv('DB_SCHEMA'),
+        ],
     ],
 ];

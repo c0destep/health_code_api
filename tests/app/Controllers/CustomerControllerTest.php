@@ -27,7 +27,7 @@ class CustomerControllerTest extends TestCase
 
     protected function prepareDatabase() : void
     {
-        $database = App::database('default');
+        $database = App::database('tests');
         $table = 'customers';
         $database->dropTable($table)->ifExists()->run();
         $database->createTable($table)
