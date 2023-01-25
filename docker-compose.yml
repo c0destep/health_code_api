@@ -6,6 +6,8 @@ services:
     working_dir: /var/www/aplus
     volumes:
       - .:/var/www/aplus
+    depends_on:
+      - mariadb
     ports:
       - "80:80"
       - "443:443"
@@ -18,9 +20,20 @@ services:
     working_dir: /var/www/aplus
     volumes:
       - .:/var/www/aplus
+    depends_on:
+      - mariadb
     ports:
       - "80:80"
       - "443:443"
     #environment:
     #  - PRELOAD=/var/www/aplus/preload.php
     tty: true
+  mariadb:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: health_code_api
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+    container_name: lempa-mariadb
