@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace App\Models;
 
 use Framework\MVC\Model;
@@ -38,7 +39,7 @@ class CustomerModel extends Model
      */
     protected bool $cacheActive = true;
 
-    public function paginate(int $page, int $perPage = 10) : array
+    public function paginate(mixed $page, mixed $perPage = 10): array
     {
         $data = $this->getDatabaseToRead()
             ->select()
@@ -57,7 +58,7 @@ class CustomerModel extends Model
     /**
      * @return array<object>
      */
-    public function getCustomers() : array
+    public function getCustomers(): array
     {
         $query = $this->getDatabaseToRead()->select()
             ->from($this->getTable());
@@ -69,7 +70,7 @@ class CustomerModel extends Model
      *
      * @return object|null
      */
-    public function getCustomerById(int|string $identify) : ?object
+    public function getCustomerById(int|string $identify): ?object
     {
         $query = $this->getDatabaseToRead()->select()
             ->from($this->getTable())
@@ -82,7 +83,7 @@ class CustomerModel extends Model
      *
      * @return object|null
      */
-    public function getCustomerByName(string $name) : ?object
+    public function getCustomerByName(string $name): ?object
     {
         $query = $this->getDatabaseToRead()->select()
             ->from($this->getTable())

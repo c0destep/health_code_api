@@ -7,14 +7,16 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace App\Controllers;
 
 use App\Models\CustomerModel;
-use const FILTER_SANITIZE_NUMBER_INT;
 use Framework\HTTP\Response;
 use Framework\MVC\Controller;
 use Framework\MVC\ModelInterface;
 use JsonException;
+use function is_null;
+use const FILTER_SANITIZE_NUMBER_INT;
 
 /**
  * Controller Customer.
@@ -31,25 +33,25 @@ class CustomerController extends Controller
     /**
      * Return all customers.
      *
+     * @return Response
      * @throws JsonException
      *
-     * @return Response
      */
-    public function index() : Response
+    public function index(): Response
     {
         $errors = $this->validate($this->request->getGet(), [
             'page' => 'optional|number|greater:0',
             'perPage' => 'optional|number|greater:0',
         ]);
 
-        if ( ! empty($errors)) {
+        if (!empty($errors)) {
             return $this->response->setJson($errors);
         }
 
-        $page = ! empty($this->request->getGet('page', FILTER_SANITIZE_NUMBER_INT))
+        $page = !empty($this->request->getGet('page', FILTER_SANITIZE_NUMBER_INT))
             ? $this->request->getGet('page', FILTER_SANITIZE_NUMBER_INT)
             : 1;
-        $perPage = ! empty($this->request->getGet('perPage', FILTER_SANITIZE_NUMBER_INT))
+        $perPage = !empty($this->request->getGet('perPage', FILTER_SANITIZE_NUMBER_INT))
             ? $this->request->getGet('perPage', FILTER_SANITIZE_NUMBER_INT)
             : 10;
 
@@ -63,17 +65,17 @@ class CustomerController extends Controller
      *
      * @param int $identify
      *
+     * @return Response
      * @throws JsonException
      *
-     * @return Response
      */
-    public function show(int $identify) : Response
+    public function show(int $identify): Response
     {
         $customer = $this->model->getCustomerById($identify); // @phpstan-ignore-line
 
-        if (\is_null($customer)) {
+        if (is_null($customer)) {
             return $this->response->setJson([
-                'errors' => lang('customer.notFound'),
+                'errors' => lang('customer.customerNotFound'),
             ]);
         }
 
@@ -89,11 +91,11 @@ class CustomerController extends Controller
     /**
      * Return new customer created.
      *
+     * @return Response
      * @throws JsonException
      *
-     * @return Response
      */
-    public function create() : Response
+    public function create(): Response
     {
         $errors = $this->validate($this->request->getPost(), [
             'name' => 'required|string',
@@ -107,7 +109,7 @@ class CustomerController extends Controller
             'healthProblem' => lang('customer.healthProblem'),
         ]);
 
-        if ( ! empty($errors)) {
+        if (!empty($errors)) {
             return $this->response->setJson([
                 'errors' => $errors,
             ]);
@@ -117,7 +119,7 @@ class CustomerController extends Controller
 
         if ($created === false) {
             return $this->response->setJson([
-                'errors' => lang('base.unexpected'),
+                'errors' => lang('base.unexpectedError'),
             ]);
         }
 
@@ -137,15 +139,15 @@ class CustomerController extends Controller
      *
      * @param int $identify
      *
+     * @return Response
      * @throws JsonException
      *
-     * @return Response
      */
-    public function update(int $identify) : Response
+    public function update(int $identify): Response
     {
         $customer = $this->model->getCustomerById($identify); // @phpstan-ignore-line
 
-        if (\is_null($customer)) {
+        if (is_null($customer)) {
             return $this->response->setJson([
                 'errors' => lang('customer.customerNotFound'),
             ]);
@@ -163,7 +165,7 @@ class CustomerController extends Controller
             'healthProblem' => lang('customer.healthProblem'),
         ]);
 
-        if ( ! empty($errors)) {
+        if (!empty($errors)) {
             return $this->response->setJson([
                 'errors' => $errors,
             ]);
@@ -173,7 +175,7 @@ class CustomerController extends Controller
 
         if ($updated === false) {
             return $this->response->setJson([
-                'errors' => lang('base.unexpected'),
+                'errors' => lang('base.unexpectedError'),
             ]);
         }
 
@@ -193,15 +195,15 @@ class CustomerController extends Controller
      *
      * @param int $identify
      *
+     * @return Response
      * @throws JsonException
      *
-     * @return Response
      */
-    public function replace(int $identify) : Response
+    public function replace(int $identify): Response
     {
         $customer = $this->model->getCustomerById($identify); // @phpstan-ignore-line
 
-        if (\is_null($customer)) {
+        if (is_null($customer)) {
             return $this->response->setJson([
                 'errors' => lang('customer.customerNotFound'),
             ]);
@@ -219,7 +221,7 @@ class CustomerController extends Controller
             'healthProblem' => lang('customer.healthProblem'),
         ]);
 
-        if ( ! empty($errors)) {
+        if (!empty($errors)) {
             return $this->response->setJson([
                 'errors' => $errors,
             ]);
@@ -229,7 +231,7 @@ class CustomerController extends Controller
 
         if ($replaced === false) {
             return $this->response->setJson([
-                'errors' => lang('base.unexpected'),
+                'errors' => lang('base.unexpectedError'),
             ]);
         }
 
@@ -249,17 +251,17 @@ class CustomerController extends Controller
      *
      * @param int $identify
      *
+     * @return Response
      * @throws JsonException
      *
-     * @return Response
      */
-    public function delete(int $identify) : Response
+    public function delete(int $identify): Response
     {
         $customer = $this->model->getCustomerById($identify); // @phpstan-ignore-line
 
-        if (\is_null($customer)) {
+        if (is_null($customer)) {
             return $this->response->setJson([
-                'errors' => lang('customer.customerNotFound'),
+                'errors' => lang('customer.customerNotFound')
             ]);
         }
 
@@ -267,12 +269,12 @@ class CustomerController extends Controller
 
         if ($deleted === false) {
             return $this->response->setJson([
-                'errors' => lang('base.unexpected'),
+                'errors' => lang('base.unexpectedError')
             ]);
         }
 
         return $this->response->setJson([
-            'message' => 'deleted',
+            'message' => 'customerDeleted'
         ]);
     }
 }

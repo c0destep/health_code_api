@@ -16,7 +16,17 @@
                 "conditions": []
             },
             {
-                "action": "vendor/bin/php-cs-fixer fix -vvv",
+                "action": "vendor/bin/phpmd app xml phpmd.xml",
+                "options": [],
+                "conditions": []
+            },
+            {
+                "action": "vendor/bin/phpstan analyse --xdebug -vvv",
+                "options": [],
+                "conditions": []
+            },
+            {
+                "action": "vendor/bin/phpunit --verbose",
                 "options": [],
                 "conditions": []
             }
