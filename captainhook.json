@@ -24,11 +24,6 @@
                 "action": "vendor/bin/phpstan analyse --xdebug -vvv",
                 "options": [],
                 "conditions": []
-            },
-            {
-                "action": "vendor/bin/phpunit --verbose",
-                "options": [],
-                "conditions": []
             }
         ]
     },

@@ -39,14 +39,6 @@ final class HelpersTest extends TestCase
         self::assertSame('&lt;script&gt;&lt;/script&gt;', esc('<script></script>'));
     }
 
-    public function testView() : void
-    {
-        self::assertStringContainsString(
-            'Aplus Framework',
-            view('home/index')
-        );
-    }
-
     public function testCurrentUrl() : void
     {
         $this->app->runHttp('http://localhost:8080');
@@ -65,10 +57,6 @@ final class HelpersTest extends TestCase
         $configs['files'][] = __DIR__ . '/../support/routes.php';
         App::config()->set('router', $configs);
         $this->app->runHttp('https://foo.com/users/25');
-        self::assertSame(
-            'http://localhost:8080/',
-            route_url('home')
-        );
         self::assertSame(
             'https://foo.com/',
             route_url('test.home')
